@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { getSettings, saveSettings } from '@/lib/storage';
 import { toast } from 'sonner';
+import { Settings as SettingsIcon, Zap, DollarSign, Info } from 'lucide-react';
 
 const Settings = () => {
   const [formData, setFormData] = useState({
@@ -31,25 +32,34 @@ const Settings = () => {
       defaultLaborCostPerHour: parseFloat(formData.defaultLaborCostPerHour),
     });
 
-    toast.success('Configurações salvas com sucesso');
+    toast.success('Configurações salvas com sucesso!');
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20 px-4 pt-6">
+    <div className="min-h-screen bg-background pb-24 px-4 pt-8 animate-fade-in">
       <div className="max-w-lg mx-auto">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-foreground">Configurações</h1>
-          <p className="text-sm text-muted-foreground">Ajuste os parâmetros de cálculo</p>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold gradient-text flex items-center gap-2">
+            <SettingsIcon className="w-8 h-8 text-primary" />
+            Configurações
+          </h1>
+          <p className="text-sm text-muted-foreground mt-1">Ajuste os parâmetros de cálculo</p>
         </div>
 
-        <Card>
+        <Card className="glass-card border-white/10 mb-6 animate-fade-in">
           <CardHeader>
-            <CardTitle>Custos Padrão</CardTitle>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Custos Padrão
+            </CardTitle>
             <CardDescription>Configure os valores utilizados nos cálculos</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="energy">Custo de Energia (R$/kWh)</Label>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="energy" className="flex items-center gap-2 text-sm font-medium">
+                <Zap className="w-4 h-4 text-primary" />
+                Custo de Energia (R$/kWh)
+              </Label>
               <Input
                 id="energy"
                 type="number"
@@ -57,14 +67,19 @@ const Settings = () => {
                 value={formData.energyCostKWh}
                 onChange={(e) => setFormData({ ...formData, energyCostKWh: e.target.value })}
                 placeholder="Ex: 0.92"
+                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50"
               />
-              <p className="text-xs text-muted-foreground mt-1">
+              <p className="text-xs text-muted-foreground flex items-start gap-1 mt-1">
+                <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
                 Valor médio cobrado pela concessionária de energia
               </p>
             </div>
 
-            <div>
-              <Label htmlFor="labor">Valor Padrão Mão de Obra (R$/h)</Label>
+            <div className="space-y-2">
+              <Label htmlFor="labor" className="flex items-center gap-2 text-sm font-medium">
+                <DollarSign className="w-4 h-4 text-primary" />
+                Valor Padrão Mão de Obra (R$/h)
+              </Label>
               <Input
                 id="labor"
                 type="number"
@@ -72,26 +87,38 @@ const Settings = () => {
                 value={formData.defaultLaborCostPerHour}
                 onChange={(e) => setFormData({ ...formData, defaultLaborCostPerHour: e.target.value })}
                 placeholder="Ex: 25.00"
+                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50"
               />
-              <p className="text-xs text-muted-foreground mt-1">
+              <p className="text-xs text-muted-foreground flex items-start gap-1 mt-1">
+                <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
                 Custo por hora de pós-processamento (lixamento, pintura, etc)
               </p>
             </div>
 
-            <Button onClick={handleSave} className="w-full">
+            <Button 
+              onClick={handleSave} 
+              className="w-full h-12 text-base bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
+            >
               Salvar Configurações
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="mt-6">
+        <Card className="glass-card border-white/10 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <CardHeader>
-            <CardTitle>Sobre o App</CardTitle>
+            <CardTitle className="text-xl">Sobre o App</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-muted-foreground">
-            <p><strong className="text-foreground">Custo3D Pro</strong> v1.0</p>
-            <p>Calculadora profissional de custos de impressão 3D</p>
-            <p className="text-xs mt-4">
+          <CardContent className="space-y-3 text-sm">
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Versão:</span>
+              <span className="font-semibold text-primary">1.0</span>
+            </div>
+            <div className="h-px bg-white/10" />
+            <p className="text-muted-foreground">
+              <strong className="text-foreground gradient-text">Custo3D Pro</strong> - Calculadora profissional de custos de impressão 3D
+            </p>
+            <div className="h-px bg-white/10" />
+            <p className="text-xs text-muted-foreground">
               Desenvolvido com React, TypeScript e Tailwind CSS
             </p>
           </CardContent>

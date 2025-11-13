@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { getFilaments, getPrinters, getSettings } from '@/lib/storage';
 import { calculateCost, formatCurrency } from '@/lib/calculator';
 import { Filament, PrinterProfile } from '@/types';
+import { Sparkles, TrendingUp } from 'lucide-react';
 
 const Calculator = () => {
   const [filaments, setFilaments] = useState<Filament[]>([]);
@@ -42,54 +43,62 @@ const Calculator = () => {
     : null;
 
   return (
-    <div className="min-h-screen bg-background pb-20 px-4 pt-6">
+    <div className="min-h-screen bg-background pb-24 px-4 pt-8 animate-fade-in">
       <div className="max-w-lg mx-auto space-y-6">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Custo3D Pro</h1>
-          <p className="text-muted-foreground">Calculadora de Custos de Impressão 3D</p>
+        {/* Header */}
+        <div className="text-center mb-8 animate-scale-in">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <Sparkles className="w-8 h-8 text-primary animate-glow-pulse" />
+            <h1 className="text-4xl font-bold gradient-text">Custo3D Pro</h1>
+          </div>
+          <p className="text-muted-foreground">Calculadora Profissional de Impressão 3D</p>
         </div>
 
-        <Card>
+        {/* Equipment Selection */}
+        <Card className="glass-card border-white/10 animate-fade-in">
           <CardHeader>
-            <CardTitle>Seleção de Equipamento</CardTitle>
-            <CardDescription>Escolha o filamento e impressora</CardDescription>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Equipamento
+            </CardTitle>
+            <CardDescription>Selecione filamento e impressora</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="filament">Filamento</Label>
+            <div className="space-y-2">
+              <Label htmlFor="filament" className="text-sm font-medium">Filamento</Label>
               <Select value={selectedFilament} onValueChange={setSelectedFilament}>
-                <SelectTrigger id="filament">
-                  <SelectValue placeholder="Selecione um filamento" />
+                <SelectTrigger id="filament" className="bg-input/50 border-white/10 h-12">
+                  <SelectValue placeholder="Escolha o filamento" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-card">
                   {filaments.length === 0 && (
-                    <div className="p-2 text-sm text-muted-foreground text-center">
+                    <div className="p-4 text-sm text-muted-foreground text-center">
                       Adicione filamentos na aba Filamentos
                     </div>
                   )}
                   {filaments.map((f) => (
-                    <SelectItem key={f.id} value={f.id}>
-                      {f.type} {f.color} - {f.brand}
+                    <SelectItem key={f.id} value={f.id} className="cursor-pointer">
+                      <span className="font-medium">{f.type} {f.color}</span> - {f.brand}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </div>
 
-            <div>
-              <Label htmlFor="printer">Impressora</Label>
+            <div className="space-y-2">
+              <Label htmlFor="printer" className="text-sm font-medium">Impressora</Label>
               <Select value={selectedPrinter} onValueChange={setSelectedPrinter}>
-                <SelectTrigger id="printer">
-                  <SelectValue placeholder="Selecione uma impressora" />
+                <SelectTrigger id="printer" className="bg-input/50 border-white/10 h-12">
+                  <SelectValue placeholder="Escolha a impressora" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="glass-card">
                   {printers.length === 0 && (
-                    <div className="p-2 text-sm text-muted-foreground text-center">
+                    <div className="p-4 text-sm text-muted-foreground text-center">
                       Adicione impressoras na aba Impressoras
                     </div>
                   )}
                   {printers.map((p) => (
-                    <SelectItem key={p.id} value={p.id}>
+                    <SelectItem key={p.id} value={p.id} className="cursor-pointer">
                       {p.name}
                     </SelectItem>
                   ))}
@@ -99,13 +108,17 @@ const Calculator = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        {/* Parameters */}
+        <Card className="glass-card border-white/10 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <CardHeader>
-            <CardTitle>Parâmetros da Impressão</CardTitle>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              Parâmetros
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="weight">Peso da Peça (g)</Label>
+            <div className="space-y-2">
+              <Label htmlFor="weight" className="text-sm font-medium">Peso da Peça (g)</Label>
               <Input
                 id="weight"
                 type="number"
@@ -113,11 +126,12 @@ const Calculator = () => {
                 value={weightGrams}
                 onChange={(e) => setWeightGrams(e.target.value)}
                 placeholder="Ex: 50"
+                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
 
-            <div>
-              <Label htmlFor="printTime">Tempo de Impressão (h)</Label>
+            <div className="space-y-2">
+              <Label htmlFor="printTime" className="text-sm font-medium">Tempo de Impressão (h)</Label>
               <Input
                 id="printTime"
                 type="number"
@@ -125,22 +139,24 @@ const Calculator = () => {
                 value={printTimeHours}
                 onChange={(e) => setPrintTimeHours(e.target.value)}
                 placeholder="Ex: 2.5"
+                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
 
-            <div>
-              <Label htmlFor="postProcessing">Tempo de Pós-Processamento (min)</Label>
+            <div className="space-y-2">
+              <Label htmlFor="postProcessing" className="text-sm font-medium">Pós-Processamento (min)</Label>
               <Input
                 id="postProcessing"
                 type="number"
                 value={postProcessingMinutes}
                 onChange={(e) => setPostProcessingMinutes(e.target.value)}
                 placeholder="Ex: 15"
+                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
 
-            <div>
-              <Label htmlFor="margin">Margem de Lucro (%)</Label>
+            <div className="space-y-2">
+              <Label htmlFor="margin" className="text-sm font-medium">Margem de Lucro (%)</Label>
               <Input
                 id="margin"
                 type="number"
@@ -148,41 +164,51 @@ const Calculator = () => {
                 value={profitMargin}
                 onChange={(e) => setProfitMargin(e.target.value)}
                 placeholder="Ex: 30"
+                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
           </CardContent>
         </Card>
 
+        {/* Result */}
         {result && (
-          <Card className="border-primary">
+          <Card className="glass-card border-primary/30 glow-border animate-scale-in bg-gradient-to-br from-primary/5 to-accent/5">
             <CardHeader>
-              <CardTitle className="text-primary">Resultado do Cálculo</CardTitle>
+              <CardTitle className="text-xl flex items-center gap-2 text-primary">
+                <TrendingUp className="w-5 h-5" />
+                Resultado do Cálculo
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Custo de Material:</span>
-                <span className="font-medium">{formatCurrency(result.materialCost)}</span>
+              <div className="space-y-3 pb-3 border-b border-white/10">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Material:</span>
+                  <span className="font-semibold text-foreground">{formatCurrency(result.materialCost)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Energia:</span>
+                  <span className="font-semibold text-foreground">{formatCurrency(result.energyCost)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Depreciação:</span>
+                  <span className="font-semibold text-foreground">{formatCurrency(result.depreciationCost)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Mão de Obra:</span>
+                  <span className="font-semibold text-foreground">{formatCurrency(result.laborCost)}</span>
+                </div>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Custo de Energia:</span>
-                <span className="font-medium">{formatCurrency(result.energyCost)}</span>
+              
+              <div className="flex justify-between items-center pt-2">
+                <span className="font-semibold">Custo Total:</span>
+                <span className="font-bold text-lg">{formatCurrency(result.totalCost)}</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Depreciação:</span>
-                <span className="font-medium">{formatCurrency(result.depreciationCost)}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Mão de Obra:</span>
-                <span className="font-medium">{formatCurrency(result.laborCost)}</span>
-              </div>
-              <div className="h-px bg-border my-2" />
-              <div className="flex justify-between font-semibold">
-                <span>Custo Total:</span>
-                <span>{formatCurrency(result.totalCost)}</span>
-              </div>
-              <div className="flex justify-between text-lg font-bold text-primary">
-                <span>Preço de Venda:</span>
-                <span>{formatCurrency(result.sellingPrice)}</span>
+              
+              <div className="flex justify-between items-center p-4 rounded-xl bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/30">
+                <span className="font-bold text-lg">Preço de Venda:</span>
+                <span className="font-bold text-2xl text-primary drop-shadow-[0_0_10px_rgba(0,123,255,0.5)]">
+                  {formatCurrency(result.sellingPrice)}
+                </span>
               </div>
             </CardContent>
           </Card>
