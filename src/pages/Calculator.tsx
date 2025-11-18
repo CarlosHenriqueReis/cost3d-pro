@@ -7,6 +7,7 @@ import { getFilaments, getPrinters, getSettings } from '@/lib/storage';
 import { calculateCost, formatCurrency } from '@/lib/calculator';
 import { Filament, PrinterProfile } from '@/types';
 import { Sparkles, TrendingUp } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Calculator = () => {
   const [filaments, setFilaments] = useState<Filament[]>([]);
@@ -47,11 +48,11 @@ const Calculator = () => {
       <div className="max-w-lg mx-auto space-y-6">
         {/* Header */}
         <div className="text-center mb-8 animate-scale-in">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Sparkles className="w-8 h-8 text-primary animate-glow-pulse" />
-            <h1 className="text-4xl font-bold gradient-text">Custo3D Pro</h1>
+          <div className="flex flex-col items-center gap-3 mb-3">
+            <img src={logo} alt="Custo3D Pro" className="w-20 h-20" />
+            <h1 className="text-3xl font-bold gradient-text">Calculadora de Custos</h1>
           </div>
-          <p className="text-muted-foreground">Calculadora Profissional de Impressão 3D</p>
+          <p className="text-muted-foreground">Calcule seus custos de impressão</p>
         </div>
 
         {/* Equipment Selection */}

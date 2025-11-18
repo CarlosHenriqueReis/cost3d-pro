@@ -43,7 +43,7 @@ const Settings = () => {
             <SettingsIcon className="w-8 h-8 text-primary" />
             Configurações
           </h1>
-          <p className="text-sm text-muted-foreground mt-1">Ajuste os parâmetros de cálculo</p>
+          <p className="text-sm text-muted-foreground mt-1">Personalize seu app</p>
         </div>
 
         <Card className="glass-card border-white/10 mb-6 animate-fade-in">
