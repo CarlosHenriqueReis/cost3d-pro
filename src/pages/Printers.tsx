@@ -92,9 +92,9 @@ const Printers = () => {
           <div>
             <h1 className="text-3xl font-bold gradient-text flex items-center gap-2">
               <PrinterIcon className="w-8 h-8 text-primary" />
-              Impressoras
+              Minhas Impressoras
             </h1>
-            <p className="text-sm text-muted-foreground mt-1">Gerencie seus equipamentos</p>
+            <p className="text-sm text-muted-foreground mt-1">Seus equipamentos cadastrados</p>
           </div>
           <Button 
             onClick={() => handleOpenDialog()} 

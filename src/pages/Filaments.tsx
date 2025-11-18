@@ -93,9 +93,9 @@ const Filaments = () => {
           <div>
             <h1 className="text-3xl font-bold gradient-text flex items-center gap-2">
               <Package className="w-8 h-8 text-primary" />
-              Filamentos
+              Meus Filamentos
             </h1>
-            <p className="text-sm text-muted-foreground mt-1">Gerencie seu inventário</p>
+            <p className="text-sm text-muted-foreground mt-1">Seu inventário de materiais</p>
           </div>
           <Button 
             onClick={() => handleOpenDialog()} 
