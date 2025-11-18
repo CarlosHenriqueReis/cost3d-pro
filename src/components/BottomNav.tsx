@@ -10,7 +10,7 @@ const BottomNav = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 glass-card border-t border-white/10 z-50 backdrop-blur-2xl">
+    <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50">
       <div className="flex justify-around items-center h-20 max-w-lg mx-auto px-2">
         {navItems.map((item) => (
           <NavLink
@@ -22,13 +22,13 @@ const BottomNav = () => {
             {({ isActive }) => (
               <>
                 {isActive && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-primary to-accent rounded-full animate-fade-in" />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-primary rounded-full animate-fade-in" />
                 )}
                 <div className={`
-                  p-3 rounded-2xl transition-all duration-300
-                  ${isActive ? 'bg-primary/10 shadow-lg shadow-primary/20 scale-110' : 'group-hover:bg-white/5'}
+                  p-3 rounded-xl transition-all duration-300
+                  ${isActive ? 'bg-primary/15 scale-105' : 'group-hover:bg-muted'}
                 `}>
-                  <item.icon className={`w-6 h-6 transition-transform ${isActive ? 'drop-shadow-[0_0_8px_rgba(0,123,255,0.8)]' : ''}`} />
+                  <item.icon className="w-6 h-6" />
                 </div>
                 <span className={`text-xs mt-1 font-medium transition-all ${isActive ? 'scale-105' : ''}`}>
                   {item.label}
