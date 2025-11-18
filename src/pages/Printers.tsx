@@ -99,7 +99,7 @@ const Printers = () => {
           <Button 
             onClick={() => handleOpenDialog()} 
             size="lg"
-            className="rounded-full w-14 h-14 shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all hover:scale-110 bg-gradient-to-r from-primary to-accent"
+            className="rounded-full w-14 h-14 bg-primary hover:bg-primary/90 transition-all hover:scale-105"
           >
             <Plus className="w-6 h-6" />
           </Button>
@@ -107,7 +107,7 @@ const Printers = () => {
 
         <div className="space-y-4">
           {printers.length === 0 ? (
-            <Card className="glass-card border-white/10">
+            <Card className="glass-card">
               <CardContent className="py-12 text-center">
                 <PrinterIcon className="w-16 h-16 mx-auto mb-4 text-muted-foreground opacity-50" />
                 <p className="text-muted-foreground">Nenhuma impressora cadastrada</p>
@@ -116,7 +116,7 @@ const Printers = () => {
             </Card>
           ) : (
             printers.map((printer, index) => (
-              <Card key={printer.id} className="glass-card border-white/10 hover:border-primary/30 transition-all hover:glow-border group animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
+              <Card key={printer.id} className="glass-card hover:border-primary transition-all group animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
                 <CardContent className="p-5">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
@@ -185,7 +185,7 @@ const Printers = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Ex: Ender 3 V2"
-                  className="bg-input/50 border-white/10 h-11"
+                  className="bg-input h-11"
                 />
               </div>
               <div className="space-y-2">
@@ -197,7 +197,7 @@ const Printers = () => {
                   value={formData.acquisitionCost}
                   onChange={(e) => setFormData({ ...formData, acquisitionCost: e.target.value })}
                   placeholder="Ex: 1500.00"
-                  className="bg-input/50 border-white/10 h-11"
+                  className="bg-input h-11"
                 />
               </div>
               <div className="space-y-2">
@@ -208,7 +208,7 @@ const Printers = () => {
                   value={formData.powerConsumptionWatts}
                   onChange={(e) => setFormData({ ...formData, powerConsumptionWatts: e.target.value })}
                   placeholder="Ex: 350"
-                  className="bg-input/50 border-white/10 h-11"
+                  className="bg-input h-11"
                 />
               </div>
               <div className="space-y-2">
@@ -219,15 +219,15 @@ const Printers = () => {
                   value={formData.estimatedLifespanHours}
                   onChange={(e) => setFormData({ ...formData, estimatedLifespanHours: e.target.value })}
                   placeholder="Ex: 20000"
-                  className="bg-input/50 border-white/10 h-11"
+                  className="bg-input h-11"
                 />
               </div>
             </div>
             <DialogFooter className="gap-2">
-              <Button variant="outline" onClick={() => setIsDialogOpen(false)} className="border-white/10">
+              <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
                 Cancelar
               </Button>
-              <Button onClick={handleSave} className="bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30">
+              <Button onClick={handleSave} className="bg-primary hover:bg-primary/90">
                 {editingPrinter ? 'Salvar' : 'Adicionar'}
               </Button>
             </DialogFooter>

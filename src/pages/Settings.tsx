@@ -46,7 +46,7 @@ const Settings = () => {
           <p className="text-sm text-muted-foreground mt-1">Personalize seu app</p>
         </div>
 
-        <Card className="glass-card border-white/10 mb-6 animate-fade-in">
+        <Card className="glass-card mb-6 animate-fade-in">
           <CardHeader>
             <CardTitle className="text-xl flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
@@ -67,7 +67,7 @@ const Settings = () => {
                 value={formData.energyCostKWh}
                 onChange={(e) => setFormData({ ...formData, energyCostKWh: e.target.value })}
                 placeholder="Ex: 0.92"
-                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50"
+                className="bg-input h-12 text-lg"
               />
               <p className="text-xs text-muted-foreground flex items-start gap-1 mt-1">
                 <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
@@ -87,7 +87,7 @@ const Settings = () => {
                 value={formData.defaultLaborCostPerHour}
                 onChange={(e) => setFormData({ ...formData, defaultLaborCostPerHour: e.target.value })}
                 placeholder="Ex: 25.00"
-                className="bg-input/50 border-white/10 h-12 text-lg focus:border-primary/50"
+                className="bg-input h-12 text-lg"
               />
               <p className="text-xs text-muted-foreground flex items-start gap-1 mt-1">
                 <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
@@ -97,14 +97,14 @@ const Settings = () => {
 
             <Button 
               onClick={handleSave} 
-              className="w-full h-12 text-base bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
+              className="w-full h-12 text-base bg-primary hover:bg-primary/90 transition-all"
             >
               Salvar Configurações
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="glass-card border-white/10 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        <Card className="glass-card animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <CardHeader>
             <CardTitle className="text-xl">Sobre o App</CardTitle>
           </CardHeader>
